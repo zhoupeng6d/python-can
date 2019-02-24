@@ -369,8 +369,8 @@ class BusABC(object):
         """
         Return the current state of the hardware
 
-        :return: ACTIVE, PASSIVE or ERROR
-        :rtype: NamedTuple
+        :return: BusState.ACTIVE, BusState.PASSIVE or BusState.ERROR
+        :rtype: can.BusState
         """
         return BusState.ACTIVE
 
@@ -379,7 +379,7 @@ class BusABC(object):
         """
         Set the new state of the hardware
 
-        :param new_state: BusState.ACTIVE, BusState.PASSIVE or BusState.ERROR
+        :param can.BusState new_state: BusState.ACTIVE, BusState.PASSIVE or BusState.ERROR
         """
         raise NotImplementedError("Property is not implemented.")
 

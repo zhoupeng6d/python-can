@@ -12,8 +12,8 @@ import time
 import datetime
 import logging
 
-from can.message import Message
-from can.listener import Listener
+from ..message import Message
+from ..listener import Listener
 from .generic import BaseIOHandler
 
 

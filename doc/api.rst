@@ -24,7 +24,7 @@ Utilities
 ---------
 
 
-.. automethod:: can.detect_available_configs
+.. autofunction:: can.detect_available_configs
 
 
 .. _notifier:
