@@ -21,14 +21,14 @@ Here is an example configuration file for using `PCAN-USB <https://www.peak-syst
     [default]
     interface = pcan
     channel = PCAN_USBBUS1
-    state = can.bus.BusState.PASSIVE
+    state = can.BusState.PASSIVE
     bitrate = 500000
 
-``channel``: (default PCAN_USBBUS1) CAN interface name
+``channel``: (default PCAN_USBBUS1) The CAN interface name
 
-``state``: (default can.bus.BusState.ACTIVE) BusState of the channel
+``state``: (default can.BusState.ACTIVE) The state of the channel
 
-``bitrate``: (default 500000) Channel bitrate
+``bitrate``: (default 500000) The channel bitrate
 
 Valid ``channel`` values:
 

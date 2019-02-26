@@ -60,6 +60,14 @@ Message filtering can be set up for each bus. Where the interface supports it, t
 out in the hardware or kernel layer - not in Python.
 
 
+States
+''''''
+
+.. autoclass:: can.BusState
+    :members:
+    :undoc-members:
+
+
 Thread safe bus
 ---------------
 

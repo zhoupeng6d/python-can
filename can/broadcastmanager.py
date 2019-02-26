@@ -78,8 +78,8 @@ class ModifiableCyclicTaskABC(CyclicSendTaskABC):
         the timing.
 
         :param can.Message message:
-          The message with the new :attr:`can.Message.data`.
-          Note: The arbitration ID cannot be changed.
+            The message with the new :attr:`can.Message.data`.
+            Note: The arbitration ID cannot be changed.
         """
         self.message = message
 
@@ -152,6 +152,7 @@ def send_periodic(bus, message, period, *args, **kwargs):
     :param can.Message message: Message to send periodically.
     :param float period: The minimum time between sending messages.
     :return: A started task instance
+    :rtype: can.CyclicSendTaskABC
     """
     warnings.warn("The function `can.send_periodic` is deprecated and will " +
                   "be removed in an upcoming version. Please use `can.Bus.send_periodic` instead.", DeprecationWarning)

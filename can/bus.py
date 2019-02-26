@@ -167,8 +167,8 @@ class BusABC(object):
         - the (optional) duration expires
         - the Bus instance goes out of scope
         - the Bus instance is shutdown
-        - :meth:`BusABC.stop_all_periodic_tasks()` is called
-        - the task's :meth:`CyclicTask.stop()` method is called.
+        - :meth:`~can.BusABC.stop_all_periodic_tasks()` is called
+        - the task's :meth:`can.CyclicTask.stop()` method is called.
 
         :param can.Message msg:
             Message to transmit
@@ -182,8 +182,8 @@ class BusABC(object):
             Disable to instead manage tasks manually.
         :return:
             A started task instance. Note the task can be stopped (and depending on
-            the backend modified) by calling the :meth:`stop` method.
-        :rtype: can.broadcastmanager.CyclicSendTaskABC
+            the backend modified) by calling the :meth:`can.CyclicTask.stop` method.
+        :rtype: can.CyclicSendTaskABC
 
         .. note::
 
@@ -305,7 +305,7 @@ class BusABC(object):
         Hook for applying the filters to the underlying kernel or
         hardware if supported/implemented by the interface.
 
-        :param Iterator[dict] filters:
+        :param typing.Iterable[dict] filters:
             See :meth:`~can.BusABC.set_filters` for details.
         """
         pass
@@ -392,7 +392,7 @@ class BusABC(object):
 
         May not to be implemented by every interface on every platform.
 
-        :rtype: Iterator[dict]
+        :rtype: typing.Iterable[dict]
         :return: an iterable of dicts, each being a configuration suitable
                  for usage in the interface's bus constructor.
         """

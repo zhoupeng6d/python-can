@@ -78,7 +78,7 @@ class PcanBus(BusABC):
             The can interface name. An example would be 'PCAN_USBBUS1'
             Default is 'PCAN_USBBUS1'
 
-        :param can.bus.BusState state:
+        :param can.BusState state:
             BusState of the channel.
             Default is ACTIVE
 

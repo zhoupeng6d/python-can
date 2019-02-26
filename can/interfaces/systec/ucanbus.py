@@ -68,7 +68,7 @@ class UcanBus(BusABC):
             be used, in case only one module is connected to the computer).
             Default is 255.
 
-        :param can.bus.BusState state:
+        :param can.BusState state:
             BusState of the channel.
             Default is ACTIVE.
 

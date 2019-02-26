@@ -46,6 +46,7 @@ from . import interface
 from .interface import Bus, detect_available_configs
 
 from .broadcastmanager import send_periodic, \
+    CyclicTask, \
     CyclicSendTaskABC, \
     LimitedDurationCyclicSendTaskABC, \
     ModifiableCyclicTaskABC, \

@@ -22,19 +22,19 @@ Message Sending Tasks
 
 The class based api for the broadcast manager uses a series of
 `mixin classes <https://www.ianlewis.org/en/mixins-and-python>`_.
-All mixins inherit from :class:`~can.broadcastmanager.CyclicSendTaskABC`
-which inherits from :class:`~can.broadcastmanager.CyclicTask`.
+All mixins inherit from :class:`~can.CyclicSendTaskABC`
+which inherits from :class:`~can.CyclicTask`.
 
-.. autoclass:: can.broadcastmanager.CyclicTask
+.. autoclass:: can.CyclicTask
     :members:
 
-.. autoclass:: can.broadcastmanager.CyclicSendTaskABC
+.. autoclass:: can.CyclicSendTaskABC
     :members:
 
-.. autoclass:: LimitedDurationCyclicSendTaskABC
+.. autoclass:: can.LimitedDurationCyclicSendTaskABC
     :members:
 
-.. autoclass:: MultiRateCyclicSendTaskABC
+.. autoclass:: can.MultiRateCyclicSendTaskABC
     :members:
 
 .. autoclass:: can.ModifiableCyclicTaskABC
@@ -48,8 +48,8 @@ Functional API
 --------------
 
 .. warning::
-    The functional API in :func:`can.broadcastmanager.send_periodic` is now deprecated
+    The functional API in :func:`can.send_periodic` is now deprecated
     and will be removed in version 4.0.
     Use the object oriented API via :meth:`can.BusABC.send_periodic` instead.
 
-.. autofunction:: can.broadcastmanager.send_periodic
+.. autofunction:: can.send_periodic
