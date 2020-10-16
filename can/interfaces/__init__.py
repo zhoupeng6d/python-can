@@ -1,3 +1,8 @@
+'''
+Date: 2020-10-16 14:04:17
+LastEditors: Dash Zhou
+LastEditTime: 2020-10-16 17:04:35
+'''
 """
 Interfaces contain low level implementations that interact with CAN hardware.
 """
@@ -17,6 +22,7 @@ BACKENDS = {
     "nican": ("can.interfaces.nican", "NicanBus"),
     "iscan": ("can.interfaces.iscan", "IscanBus"),
     "virtual": ("can.interfaces.virtual", "VirtualBus"),
+    "xcudp": ("can.interfaces.xcudp", "XcudpBus"),
     "neovi": ("can.interfaces.ics_neovi", "NeoViBus"),
     "vector": ("can.interfaces.vector", "VectorBus"),
     "slcan": ("can.interfaces.slcan", "slcanBus"),
