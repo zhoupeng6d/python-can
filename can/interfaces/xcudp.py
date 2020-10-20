@@ -18,7 +18,7 @@ import socket
 
 logger = logging.getLogger(__name__)
 
-playback_start_time = None
+
 dlc2len = [0, 1, 2, 3, 4, 5, 6, 7, 8, 12, 16, 20, 24, 32, 48, 64]
 
 # Channels are lists of queues, one for each connection
@@ -32,20 +32,7 @@ channels_lock = RLock()
 
 class XcudpBus(BusABC):
     """
-    A virtual CAN bus using an internal message queue. It can be
-    used for example for testing.
-
-    In this interface, a channel is an arbitrary object used as
-    an identifier for connected buses.
-
-    Implements :meth:`can.BusABC._detect_available_configs`; see
-    :meth:`can.XcudpBus._detect_available_configs` for how it
-    behaves here.
-
-    .. note::
-        The timeout when sending a message applies to each receiver
-        individually. This means that sending can block up to 5 seconds
-        if a message is sent to 5 receivers with the timeout set to 1.0.
+    An interface that simulates the XCU's M core UDP protocol
     """
 
     def __init__(
@@ -61,15 +48,14 @@ class XcudpBus(BusABC):
 
         # the channel identifier may be an arbitrary object
         self.channel_id = channel
-        self.channel_info = "Virtual bus channel {}".format(self.channel_id)
-        self.receive_own_messages = receive_own_messages
+        self.channel_info = "xcu udp {}".format(self.channel_id)
         self._open = True
         self.UDP_IP = "127.0.0.1"
         self.UDP_PORT = 4531
+        self.playback_start_time = None
 
         self.sock = socket.socket(socket.AF_INET, # Internet
                                  socket.SOCK_DGRAM) # UDP
-
         with channels_lock:
 
             # Create a new channel if one does not exist
@@ -108,12 +94,10 @@ class XcudpBus(BusABC):
 
     def send(self, msg: Message, timeout: Optional[float] = None) -> None:
         self._check_if_open()
-
-        global playback_start_time
         global dlc2len
 
-        if playback_start_time is None:
-            playback_start_time = time.time()
+        if self.playback_start_time is None:
+            self.playback_start_time = time.time()
 
         # type uint8_t
         b = bytearray(self.datalen(msg.dlc))
@@ -122,7 +106,7 @@ class XcudpBus(BusABC):
         b[1] = 0x01
         b[2] = 0x00
         # timestamp uint64_t
-        timestamp = playback_start_time + msg.timestamp
+        timestamp = self.playback_start_time + msg.timestamp
         millis = int(round(timestamp * 1000))
         b[3:10] = millis.to_bytes(8, 'little')
         # id uint16_t
